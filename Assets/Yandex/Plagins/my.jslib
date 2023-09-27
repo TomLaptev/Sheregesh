@@ -27,17 +27,16 @@ mergeInto(LibraryManager.library, {
   },
   //==================================================================
   GetData: function (name) {
-    var playerDatas = localStorage.getItem(UTF8ToString(name));
-    if (playerDatas !== undefined && playerDatas !== null) {
-      myGameInstance.SendMessage("Progress", "SetPlayerInfo", playerDatas);
-    } else {
-      myGameInstance.SendMessage("Progress", "SetPlayerZeroInfo");
-    }
+    var playerDatas = localStorage
+      .getItem(UTF8ToString(name))
+      .then(() => {
+        if (playerDatas !== undefined && playerDatas !== null) {
+          myGameInstance.SendMessage("Progress", "SetPlayerInfo", playerDatas);
+        } else {
+          myGameInstance.SendMessage("Progress", "SetPlayerZeroInfo");
+        }
+      });
     console.log("playerDatas:" + playerDatas);
-  },
-
-  SetData: function (name, info) {
-    localStorage.setItem(UTF8ToString(name), UTF8ToString(info));
   },
   //==================================================================
   SetToLeaderboardExtern: function (value) {
