@@ -102,7 +102,7 @@ public class Progress : MonoBehaviour
     public void SetPlayerInfo(string value)
     {
         PlayerInfo = JsonUtility.FromJson<PlayerInfo>(value);
-        LoadedDates();
+        Invoke("LoadedDates", 0.3f);
     }
     public void SetPlayerZeroInfo()
     {
